@@ -20,9 +20,24 @@ app.get("/about", (req, res) => {
   res.send("About Us Page");
 });
 
-// Create route
+// Route all news
 app.get("/news", (req, res) => {
   res.send(news);
+});
+
+// Route: News by id
+app.get("/news/:id", (req, res) => {
+  id = req.params.id;
+  const selectedNews = news.find((n) => (n._id = id));
+  res.send(selectedNews);
+});
+
+// Route: News by category id
+app.get("/category/:id", (req, res) => {
+  id = req.params.id;
+  console.log(id);
+  const selectedNews = news.filter((n) => n.category_id == id);
+  res.send(selectedNews);
 });
 
 // Create route
